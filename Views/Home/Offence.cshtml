@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model MySapsApplication.Models.Suspects.OffenceModel
+
+<div class="text-center">
+    <h1 class="display-4">Record New Suspect </h1>
+</div>
+
+<div class="text-left">
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-4 card p-4">
+            <h2 class="text-center text-info">Record New Suspect</h2>
+            <form asp-action="OffenceForm" asp-controller="Home" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-1">
+                    <label asp-for="OffenceType"></label>
+                    <input asp-for="OffenceType" class="form-control" />
+                    <span asp-validation-for="OffenceType" class="text-danger"></span>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-4">
+                        <input type="submit" value="Submit" class="btn btn-primary btn-sm float-end" />
+                    </div>
+
+                </div>
+                @if (TempData["AlertMessage"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["AlertMessage"]
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</div>
+

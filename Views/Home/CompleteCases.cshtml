@@ -1,0 +1,53 @@
+﻿@using MySapsApplication.Models.Suspects
+@model List<CrimeRecordModel>
+@{
+    ViewBag.Title = "Complete cases";
+}
+
+
+<h2 style="text-transform:uppercase; font-size:18px; background-color:cadetblue; color:aliceblue;border:1px solid white;font-weight:300;padding:1%;">Completed Case Details</h2>
+<table class="table table-striped table-bordered table-hover" style="border:1px solid cadetblue;">
+    <thead class="thead-dark">
+        <tr style="background-color:cadetblue;color:aliceblue;text-transform:uppercase;border:1px solid white;">
+            <th>CaseID</th>
+            <th>Suspect No</th>
+            <th>Offence</th>
+            <th>sentence</th>
+            
+            <th>Issued At</th>
+            <th>Issued By</th>
+            <th>Date Issued</th>
+
+            <th>case status</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model != null && Model.Any())
+    {
+        foreach (var caseRecord in Model)
+        {
+            <tr>
+                <td>@caseRecord.Id</td>
+                <td>@caseRecord.SuspectNo</td>
+                    <td>@caseRecord.Offence</td>
+                <td>@caseRecord.Sentence</td>
+                <td>@caseRecord.IssuedAt</td>
+                <td>@caseRecord.IssuedBy</td>
+                <td>@caseRecord.IssueDate</td>
+                <td>@caseRecord.Status</td>
+                
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="4" class="no-cases">No complete cases found.</td>
+        </tr>
+    }
+    </tbody>
+</table>
+<footer style="background-color: skyblue; padding: 20px; text-align: center;">
+    <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+</footer>

@@ -1,0 +1,85 @@
+﻿
+@model MySapsApplication.Models.Suspects.CrimeRecordModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-left">
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-4 card p-4">
+            <h2 class="text-center text-info">Suspect Criminal Record</h2>
+            <form asp-action="AddCrimeRecord" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="mb-1">
+                    <input hidden class="form-control" type="number" placeholder="0" asp-for="Id" />
+                     <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <div class="mb-1">
+                    <label asp-for="SuspectNo"></label>
+                    <input asp-for="SuspectNo" class="form-control" placeholder="Create A suspect Key Number" />
+                    <span asp-validation-for="SuspectNo" class="text-danger"></span>
+                </div>
+                <div class="form-control">
+                    <label asp-for="Offence" class="control-label"></label>
+
+                    @Html.DropDownList("Offence", (SelectList)
+                             ViewBag.OffenceTypes,
+                             "Select Offence",
+                             new { @Views_Home_Offence = "Select Offence" })
+                </div>
+                <div class="mb-1">
+                    <label asp-for="Sentence"></label>
+                    <input asp-for="Sentence" class="form-control" />
+                    <span asp-validation-for="Sentence" class="text-danger"></span>
+                </div>
+                <div class="mb-1">
+                    <label asp-for="IssuedAt"></label>
+                    <input asp-for="IssuedAt" class="form-control" />
+                    <span asp-validation-for="IssuedAt" class="text-danger"></span>
+                </div>
+                <div class="mb-1">
+                    <label asp-for="IssuedBy"></label>
+                    <input asp-for="IssuedBy" class="form-control" />
+                    <span asp-validation-for="IssuedBy" class="text-danger"></span>
+                </div>
+                <div class="mb-1">
+                    <label asp-for="IssueDate"></label>
+                    <input asp-for="IssueDate" class="form-control" />
+                    <span asp-validation-for="IssueDate" class="text-danger"></span>
+                </div>
+                <div class="form-control">
+                <label for="Status">Select Status of the Case:</label>
+                <select id="Status" name="Status" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="CompleteCase">Complete Case</option>
+                    <option value="PendingCase">Pending Case</option>
+                    <option value="NotCompleteCase">NotCompleteCase</option>
+                </select>
+                </div>
+
+
+                <div class="row" style="padding-top:1%;">
+                    <div class="col-4">
+                        <input type="submit" value="save changes" class="btn btn-primary btn-sm float-end" />
+                    </div>
+
+                        <div> <a asp-action="Index" asp-controller="Home">Close</a></div>
+                    
+               
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+    <footer style="background-color: skyblue; padding: 20px; text-align: center; position: relative; bottom: 0; width: 100%;">
+        <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+    </footer>
+</div>
+

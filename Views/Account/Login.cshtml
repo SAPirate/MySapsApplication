@@ -1,0 +1,34 @@
+﻿@model MySapsApplication.Models.ViewModel.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="text-left">
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-4 card p-4">
+            <br />
+            <h2 class="text-center text-info">User Login</h2>
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger">
+                <div class="form-group">
+                    <label asp-for="Email" style="color:darkslategray"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                        <label asp-for="Password" style="color:darkslategray"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input asp-for="RememberMe" type="checkbox" class="custom-control-input" />
+                            <label class="custom-control-label" style="color:darkslategray" asp-for="RememberMe">@Html.DisplayNameFor(mbox => mbox.RememberMe)</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

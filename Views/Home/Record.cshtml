@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "AllRecords Page";
+}
+
+@if (User.IsInRole("Manager"))
+{
+
+@model IEnumerable<MySapsApplication.Models.Suspects.Records>
+
+    <h3 style="background-color:cadetblue;color:aliceblue;padding:1%;font-size:18px;text-transform:uppercase;font-weight:400;border:1px solid black;">Station Manager full records with status</h3>
+<div class="text-center">
+   
+    <br />
+
+
+
+        <table class="table table-striped table-bordered table-hover" style="border:1px solid cadetblue;">
+            <thead class="thead-dark">
+                <tr style="background-color:cadetblue;color:aliceblue;text-transform:uppercase;border:1px solid white;font-weight:300;">
+                <th>Id </th>
+                <th>Suspect_No:</th>
+                <th>Suspect_ID</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Offence</th>
+                <th>Sentence</th>
+                <th>IssuedAt</th>
+                <th>IssuedBy</th>
+                <th>IssueDate</th>
+                <th>casestatus</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr style="font-size:14px;text-transform:capitalize;">
+                    <td>@item.IndexModels.Id</td>
+                    <td>@item.IndexModels.SuspectNo</td>
+                    <td>@item.IndexModels.SuspectIdentity</td>
+                    <td>@item.IndexModels.FirstName</td>
+                    <td>@item.IndexModels.LastName</td>
+                    <td>@item.CrimeRecordModel.Offence</td>
+                    <td>@item.CrimeRecordModel.Sentence</td>
+                    <td>@item.CrimeRecordModel.IssuedAt</td>
+                    <td>@item.CrimeRecordModel.IssuedBy</td>
+                    <td>@item.CrimeRecordModel.IssueDate</td>
+                     <td>@item.CrimeRecordModel.Status</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+        <footer style="background-color: skyblue; padding: 20px; text-align: center; position: relative; bottom: 0; width: 100%;">
+            <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+}
+else
+{
+    <h1>you are not authorised , only managers allowed</h1>
+}
+

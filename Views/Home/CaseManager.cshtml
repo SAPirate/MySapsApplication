@@ -1,0 +1,92 @@
+﻿@using MySapsApplication.Models.Suspects
+@model List<CrimeRecordModel>
+
+@{
+    ViewData["Title"] = "Pending Cases";
+    var samRecords = ViewBag.SamRecords as List<CrimeRecordModel>;
+    var policeRecords = ViewBag.PoliceRecords as List<CrimeRecordModel>;
+    int samCount = samRecords.Count;
+    int policeCount = policeRecords.Count;
+}
+
+<h2 class="text-center text-info" style="font-size: 25px; background-color: aliceblue; padding: 1%;">Registered Pending Cases</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div>
+        <strong>@ViewBag.Message</strong>
+    </div>
+}
+
+<h2 class="text-left text-info" style="font-size: 18px;">Case Counts</h2>
+<ul>
+    <li>Sam has @samCount cases</li>
+    <li>Police Officer has @policeCount cases</li>
+</ul>
+
+@if (ViewBag.RemainingRecords != null && ViewBag.RemainingRecords.Count > 0)
+{
+    <h2 class="text-left text-info" style="font-size: 24px;">Leftover Cases</h2>
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Suspect No</th>
+                <th>Offence</th>
+                <th>Issued At</th>
+                <th>Issued By</th>
+                <th>Sentence (Years)</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th> <!-- Added header for actions -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in ViewBag.RemainingRecords)
+            {
+                <tr>
+                    <td>@record.Id</td>
+                    <td>@record.SuspectNo</td>
+                    <td>@record.Offence</td>
+                    <td>@record.IssuedAt</td>
+                    <td>@record.IssuedBy</td>
+                    <td>@record.Sentence</td>
+                    <td>@record.IssueDate</td>
+                    <td>@record.Status</td>
+                    <td>
+                        @if (policeCount < samCount )
+                        {
+
+                            <a asp-action="CrimeRecord" class="btn btn-warning btn-sm"
+                               style="background-color:cornflowerblue; color:aliceblue; border:1px solid skyblue;"
+                               asp-route-id="@record.Id">Edit</a>
+
+                        }
+                        else
+                        {
+                            if (record.Status != "CompleteCase")
+                            {
+                                
+                                <span>Case is to be transferred to @((policeCount < samCount) ? "Police Officer" : "Sam")</span>
+                            }
+                            else
+                            {
+                                <span>No Edit Permission</span>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p style="color: maroon; font-size: 18px; font-weight: 500; text-transform: uppercase; padding: 1%; text-align: left;">
+        All cases are balanced: [ No remaining pending cases found ].
+    </p>
+}
+
+<footer style="background-color: skyblue; padding: 20px; text-align: center; position: relative; bottom: 0; width: 100%;">
+    <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+</footer>

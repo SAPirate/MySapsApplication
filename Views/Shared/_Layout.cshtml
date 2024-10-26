@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MySapsApplication</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MySapsApplication.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <div class="image">
+                <img src="\Img\logo.jpg" alt="MySapsApplication Logo" class="img-fluid" />
+                </div>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" >
+                    <ul class="navbar-nav flex-grow-1">
+                        
+                       @if (User.Identity.IsAuthenticated)
+                            {
+                            <li class="nav-item" style="background-color:darkslategray;border-radius:6px;">
+                                <a class="nav-link" style=" border:1px solid white;color:aliceblue;border-radius:6px;" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
+                            @if (User.IsInRole("Manager"))
+                            {
+                                <li class="nav-item" style="background-color:aliceblue;border-radius:6px;">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Record">StationManager</a>
+                                </li>
+                                <li class="nav-item" style="background-color:aliceblue;border-radius:6px;">
+                                    <a class="nav-link " asp-area="" asp-controller="Home" asp-action="StatsForCases">StatsForCases</a>
+                                </li>
+                                <li class="nav-item" style="background-color:aliceblue;border-radius:6px;">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="CompleteCases">CompleteCases</a>
+                                </li>
+                              
+
+                               
+                              
+                            }
+                            @if (User.IsInRole("Admin"))
+                            {
+                               
+                                <li class="nav-item"  style="background-color:aliceblue;border-radius:6px;">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item"  style="background-color:aliceblue;border-radius:6px;">
+                                    <a class="nav-link"  asp-area="" asp-controller="Home" asp-action="CrimeRecord">CrimeRecord</a>
+                                </li>
+
+                                <li class="nav-item"  style="background-color:aliceblue;border-radius:6px;">
+                                    <a class="nav-link "  asp-area="" asp-controller="Home" asp-action="Search">Search</a>
+                                </li>
+                                <li class="nav-item"  style="background-color:aliceblue;border-radius:6px;">
+                                    <a class="nav-link "  asp-area="" asp-controller="Home" asp-action="SamCaseManager">SamCaseManager</a>
+                                </li>
+                                <li class="nav-item"  style="background-color:aliceblue;border-radius:6px;">
+                                    <a class="nav-link " asp-area="" asp-controller="Home" asp-action="CaseManagers">ManagerReferals</a>
+                                </li>
+                              
+                               
+                            }
+                            @if (User.IsInRole("Member"))
+                            {
+                               
+                                <li class="nav-item" style="background-color:cadetblue;border-radius:6px;">
+                                    <a class="nav-link" style=" border:1px solid white;color:aliceblue;border-radius:6px;" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item" style="background-color:cadetblue;border-radius:6px;">
+                                    <a class="nav-link" style=" border:1px solid white;color:aliceblue;border-radius:6px;" asp-area="" asp-controller="Home" asp-action="CrimeRecord">CrimeRecord</a>
+                                </li>
+                                <li class="nav-item" style="background-color:cadetblue;border-radius:6px;">
+                                    <a class="nav-link" style=" border:1px solid white;color:aliceblue;border-radius:6px;" asp-area="" asp-controller="Home" asp-action="Search">Search</a>
+                                </li>
+                                <li class="nav-item" style="background-color:cadetblue;border-radius:6px;">
+                                    <a class="nav-link " style=" border:1px solid white;color:aliceblue;border-radius:6px;" asp-area="" asp-controller="Home" asp-action="PoliceCaseManager">PoliceCaseManager</a>
+                                </li>
+                                <li class="nav-item" style="background-color:cadetblue;border-radius:6px;">
+                                    <a class="nav-link " style="border:1px solid white;color:aliceblue;border-radius:6px;" asp-area="" asp-controller="Home" asp-action="CaseManager">ManagerReferals</a>
+                                </li>
+
+                                
+                            }
+                            @if (User.IsInRole("CaseAdmin"))
+                            {
+                                <li class="nav-item" style="background-color:cadetblue;border-radius:6px;">
+                                    <a class="nav-link " style="border:1px solid white;color:aliceblue;border-radius:6px;" asp-area="" asp-controller="Account" asp-action="CaseAdmin">CaseAdmin</a>
+                                </li>
+                            }
+                        }
+                            else
+                        {
+                            <li class="nav-item" style="background-color:cadetblue;border-radius:6px;">
+                                <a class="nav-link" style=" border:1px solid white;color:aliceblue;border-radius:6px;" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - MySapsApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

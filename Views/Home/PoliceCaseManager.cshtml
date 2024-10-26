@@ -1,0 +1,73 @@
+﻿@using MySapsApplication.Models.Suspects
+@model List<CrimeRecordModel>
+@{
+    ViewBag.Title = "Case Manager";
+    var policeRecords = ViewBag.policeRecords as List<CrimeRecordModel>;
+}
+
+<h3 style="background-color:forestgreen;color:aliceblue;padding:1%;border-radius:2px;font-size:18px;text-transform:uppercase;font-weight:400;border:1px solid white;">Records for : Police Officer</h3>
+<br />
+@if (policeRecords != null && policeRecords.Count > 0)
+{
+    <table class="table table-striped table-bordered table-hover" style="border:1px solid forestgreen;">
+        <thead class="thead-dark">
+            <tr style="background-color:forestgreen;color:aliceblue;border:1px solid aliceblue;color:aliceblue;text-transform:uppercase; ">
+                <th>Case ID</th>
+                <th>Suspect No</th>
+                <th>Offence</th>
+                <th>Issued At</th>
+                <th>Issued By</th>
+                <th>Date Issued</th>
+                <th>Status</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (policeRecords != null && policeRecords.Any())
+            {
+                foreach (var record in policeRecords)
+                {
+                    <tr>
+                        <td>@record.Id</td>
+                        <td>@record.SuspectNo</td>
+                        <td>@record.Offence</td>
+                        <td>@record.IssuedAt</td>
+                        <td>@record.IssuedBy</td>
+                        <td>@record.IssueDate</td>
+                        <td>@record.Status</td>
+
+                        <td>
+                            @if (record.Status != "CompleteCase")
+                            {
+                                <a asp-action="CrimeRecord" class="btn btn-warning btn-sm"
+                                   style="background-color:cornflowerblue; color:aliceblue; border:1px solid skyblue;"
+                                   asp-route-id="@record.Id">Edit</a>
+                            }
+                            else
+                            {
+                                <span>No Edit Permission</span>
+                            }
+                        </td>
+
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" class="text-center">No records found for Police Officer.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <p>No records found for Police Officer.</p>
+}
+
+<footer style="background-color: skyblue; padding: 20px; text-align: center; position: relative; bottom: 0; width: 100%;">
+    <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+</footer>
+

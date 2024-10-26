@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Completed Cases Statistics";
+}
+
+<h1 style="text-transform:uppercase; font-size:18px; background-color:darkslategray; color:aliceblue;border:1px solid white;font-weight:300;padding:1%;">Completed Cases Statistics</h1>
+
+
+<table class="table table-striped table-bordered table-hover" style="border:1px solid darkslateblue;">
+    <thead class="thead-dark">
+        <tr style="text-transform:uppercase; font-size:14px; background-color:darkslategray; color:aliceblue;border:1px solid white;font-weight:100;">
+            <th>Complete Cases: Sam</th>
+            <th>Complete Cases: Police Officer</th>
+            <th>Total Completed Cases</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="font-size:17px;">
+            <td>@ViewBag.SamCompletedCasesCount</td>
+            <td>@ViewBag.OfficerCompletedCasesCount</td>
+            <td>@ViewBag.TotalCompletedCasesCount</td>
+        </tr>
+    </tbody>
+</table>
+<br />
+
+
+
+<!-- You can add more sections for other case statuses if needed -->
+
+<footer style="background-color: skyblue; padding: 20px; text-align: center;">
+    <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+</footer>

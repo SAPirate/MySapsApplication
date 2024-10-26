@@ -1,0 +1,61 @@
+﻿@using MySapsApplication.Models.Suspects
+
+@{
+    ViewData["Title"] = "Suspects Records Page";
+}
+
+@model List<IndexModel>
+
+<div class="text-center  card p-4">
+    <div class="text-center">
+        <h2 class="text-center" style="background-color:lightskyblue;padding:1%;text-transform:capitalize;color:dimgray;font-size:20px;text-transform:uppercase;">registered suspects records</h2>
+
+    </div>
+    <br />
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr style="text-transform:uppercase;font-size:15px;">
+                <th>ID</th>
+                <th>Suspect_No:</th>
+                <th>Suspect_ID</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Edit</th>
+              
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var IndexModel in Model)
+                {
+                    <tr>
+                        <td>@IndexModel.Id</td>
+                        <td>@IndexModel.SuspectNo</td>
+                        <td>@IndexModel.SuspectIdentity</td>
+                        <td>@IndexModel.FirstName</td>
+                        <td>@IndexModel.LastName</td>
+                        <td><a asp-action="Index" asp-route-id="@IndexModel.Id">Edit</a></td>
+                  
+                    
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <form method="get" asp-action="IndexRecord">
+        @if (Model.Count == 0)
+        {
+            <p class="text-danger fw-bolder fs-5 text-center" >No Criminal Record Found For "@ViewData["GetRegistersDetails"]"</p>
+            <div class="text-center">
+                <a asp-action="CrimeRecord" class="btn btn-primary">Register New Suspect Criminal Record </a>
+            </div>
+        }
+
+    </form>
+    <footer style="background-color: skyblue; padding: 20px; text-align: center; position: relative; bottom: 0; width: 100%;">
+        <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+    </footer>
+</div>
+

@@ -1,0 +1,71 @@
+﻿@using MySapsApplication.Models.Suspects
+@{
+    ViewData["Title"] = "RegisterNewSuspect Page";
+}
+
+<div class="text-left">
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-10 card p-4">
+           
+           <table>
+               
+                <tr>
+                    <th><h2 class="text-left text-info">Search Suspect Record</h2></th>
+                    <th><h2 class="text-left text-info">Search Suspect Criminal Record</h2></th>
+                </tr>
+                <tr>
+                   
+                    <td>
+                        
+                    
+                        <form method="get" asp-action="IndexRecord">
+                            @if (Model.Count == 0)
+                            {
+                                <p class="text-danger fw-bolder fs-5">No Suspect Record Found For "@ViewData["GetRegistersDetails"]"</p>
+                                <div class="text-center">
+                                    <a asp-action="Index" class="btn btn-primary">Register New Suspect Criminal Record </a>
+                                </div>
+                            }
+                            <p>Enter The SuspectIdentity number</p>
+                            <p>
+                                <input type="search" placeholder="Enter suspectId or suspect LastName" required value="@ViewData[" GetRegistersDetails"]" name="Empsearch" style="width:500px;" />
+                                <input type="submit" value="Search" class="btn btn-primary" />
+
+                            </p>
+                        </form>
+                    
+                    </td>
+                    
+                    <td>
+                         @if (User.IsInRole("Admin") || User.IsInRole("Member"))
+                    {
+                        <form method="get" asp-action="CrimeRecordList">
+                            @if (Model.Count == 0)
+                            {
+                                <p class="text-danger fw-bolder fs-5">No Suspect Record Found For "@ViewData["GetRegistersDetails"]"</p>
+                                <div class="text-center">
+                                    <a asp-action="Index" class="btn btn-primary">Register New Suspect Criminal Record </a>
+                                </div>
+                            }
+                            <p>Enter The SuspectNo</p>
+                            <p>
+                                <input type="search" placeholder="Enter suspectId or suspect LastName" required value="@ViewData[" GetRegistersDetails"]" name="Empsearch" style="width:500px;" />
+                                <input type="submit" value="Search" class="btn btn-primary" />
+
+                            </p>
+                        </form>
+                    }
+                    </td>
+                </tr>
+               
+           </table>     
+</div>
+</div>
+    <footer style="background-color: skyblue; padding: 20px; text-align: center; position: relative; bottom: 0; width: 100%;">
+        <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+    </footer>
+
+</div>
+
+
+
