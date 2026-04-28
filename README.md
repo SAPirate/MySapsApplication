@@ -1,1 +1,1 @@
-A full-stack ASP.NET Core MVC application for managing suspects and crime records, featuring user authentication with Identity, role-based access control, case tracking, and statistical reporting.
+Developed a crime and case management system with role-based authentication, user management, suspect tracking, offence management, and reporting.
